@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopify Insights Fetcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        input[type="text"] {
+            width: 400px;
+            padding: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-left: 10px;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 20px;
+            border: 1px solid #ddd;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h2>Shopify Insights Fetcher</h2>
+    <p>Enter a Shopify store URL below to get brand insights.</p>
+    
+    <input type="text" id="urlInput" placeholder="e.g. https://memy.co.in">
+    <button onclick="fetchInsights()">Get Insights</button>
+
+    <h3>Results:</h3>
+    <pre id="output">Nothing fetched yet.</pre>
+
+    <script>
+        async function fetchInsights() {
+            const url = document.getElementById('urlInput').value;
+            const output = document.getElementById('output');
+            
+            if (!url.trim()) {
+                output.textContent = "❌ Please enter a Shopify store URL.";
+                return;
+            }
+
+            output.textContent = "⏳ Fetching...";
+
+            try {
+                const response = await fetch(`/get-insights?url=${encodeURIComponent(url)}`);
+                const data = await response.json();
+                output.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                output.textContent = "❌ Error: " + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
