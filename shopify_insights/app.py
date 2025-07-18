@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')  # ✅ this serves your UI
+    return render_template('index.html')  
 
 @app.route('/get-insights', methods=['POST', 'GET'])
 def get_insights():

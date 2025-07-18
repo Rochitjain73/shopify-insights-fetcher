@@ -1,7 +1,6 @@
-# competitor_finder.py
 
 def get_competitor_urls(brand_url):
-    # This is a basic mock; in production, you'd use an API like SerpAPI or scrape search engines.
+
     mock_competitors = {
         "https://memy.co.in": [
             "https://hairoriginals.com",
